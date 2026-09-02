@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill2Job | AI Career Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+<style>
+/* --- CSS REMAINS UNCHANGED --- */
+*{ margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+body{ font-family:'Inter',sans-serif; background:#F8FAFC; color:#111827; overflow-x:hidden; }
+:root{ --primary:#2563EB; --secondary:#3B82F6; --light:#EFF6FF; --card:#FFFFFF; --text:#111827; --gray:#64748B; --border:#E5E7EB; }
+nav{ position:fixed; top:0; left:0; width:100%; background:rgba(255,255,255,.8); backdrop-filter:blur(18px); padding:18px 8%; display:flex; justify-content:space-between; align-items:center; z-index:999; border-bottom:1px solid #E8EEF8; }
+.logo{ font-size:24px; font-weight:700; font-family:Poppins,sans-serif; color:var(--primary); }
+.logo span{ color:#111827; }
+nav ul{ display:flex; list-style:none; gap:30px; }
+nav ul li a{ text-decoration:none; font-weight:500; color:#475569; transition:.3s; }
+nav ul li a:hover{ color:var(--primary); }
+.nav-btn{ padding:12px 24px; border:none; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; font-weight:600; border-radius:14px; cursor:pointer; transition:.3s; box-shadow:0 12px 20px rgba(37,99,235,.2); }
+.nav-btn:hover{ transform:translateY(-3px); }
+.hero{ min-height:100vh; display:flex; align-items:center; justify-content:space-between; padding:120px 8% 60px; background:linear-gradient(to bottom,#FFFFFF,#EFF6FF); }
+.hero-text{ width:50%; }
+.hero-text h1{ font-size:58px; font-family:Poppins,sans-serif; line-height:1.15; margin-bottom:20px; }
+.hero-text h1 span{ color:var(--primary); }
+.hero-text p{ font-size:18px; color:#64748B; margin-bottom:35px; line-height:1.7; }
+.hero-buttons{ display:flex; gap:20px; }
+.primary-btn{ padding:15px 32px; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; border:none; border-radius:16px; font-size:16px; font-weight:600; cursor:pointer; box-shadow:0 14px 25px rgba(59,130,246,.25); transition:.3s; }
+.primary-btn:hover{ transform:translateY(-3px); }
+.secondary-btn{ padding:15px 30px; background:white; border:2px solid var(--primary); color:var(--primary); font-size:16px; font-weight:600; border-radius:16px; cursor:pointer; transition:.3s; }
+.secondary-btn:hover{ background:var(--primary); color:white; }
+.hero-image{ width:45%; display:flex; justify-content:center; }
+.hero-card{ width:100%; background:white; border-radius:30px; padding:30px; box-shadow:0 20px 45px rgba(37,99,235,.1); border:1px solid var(--border); }
+.hero-card h3{ font-family:Poppins; margin-bottom:20px; }
+.skill{ background:#EFF6FF; padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; margin:12px 0; }
+.skill span{ color:var(--primary); font-weight:600; }
+.progress{ height:8px; background:#DCEAFE; border-radius:30px; margin-top:8px; overflow:hidden; }
+.progress div{ height:100%; background:linear-gradient(90deg,#2563EB,#60A5FA); border-radius:30px; }
+.features{ padding:80px 8%; background:white; }
+.section-title{ text-align:center; font-family:Poppins; font-size:38px; margin-bottom:12px; }
+.section-sub{ text-align:center; color:#64748B; margin-bottom:50px; }
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:35px; padding:0 20px; }
+.card{ background:white; padding:30px; border-radius:22px; border:1px solid var(--border); transition:.3s; box-shadow:0 8px 25px rgba(0,0,0,.04); }
+.card:hover{ transform:translateY(-8px); box-shadow:0 15px 30px rgba(37,99,235,.12); }
+.card i{ font-size:30px; color:var(--primary); margin-bottom:20px; }
+.card h3{ font-family:Poppins; margin-bottom:10px; }
+.card p{ color:#64748B; font-size:15px; line-height:1.6; }
+.auth-section{ display:none; min-height:100vh; background:linear-gradient(135deg,#EFF6FF,#FFFFFF); justify-content:center; align-items:center; padding-top:80px; }
+.auth-container{ width:900px; background:white; border-radius:28px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden; box-shadow:0 25px 50px rgba(37,99,235,.12); }
+.left-panel{ background:linear-gradient(135deg,#2563EB,#60A5FA); padding:50px; color:white; display:flex; flex-direction:column; justify-content:center; }
+.left-panel h2{ font-family:Poppins; font-size:36px; margin-bottom:15px; }
+.left-panel p{ line-height:1.7; opacity:.95; }
+.right-panel{ padding:45px; }
+.form-title{ font-family:Poppins; font-size:28px; margin-bottom:25px; }
+.input-box{ margin-bottom:20px; }
+.input-box label{ display:block; font-weight:600; margin-bottom:8px; font-size:14px; }
+.input-box input{ width:100%; padding:15px; border:1px solid var(--border); border-radius:14px; font-size:15px; outline:none; transition:.3s; }
+.input-box input:focus{ border-color:#3B82F6; box-shadow:0 0 0 4px rgba(59,130,246,.15); }
+.auth-btn{ width:100%; padding:15px; background:#2563EB; color:white; border:none; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; transition:.3s; }
+.auth-btn:hover{ background:#1D4ED8; }
+.switch{ text-align:center; margin-top:20px; color:#64748B; }
+.switch span{ color:#2563EB; font-weight:600; cursor:pointer; }
+footer{ background:#0F172A; padding:30px 8%; margin-top:40px; text-align:center; color:#CBD5E1; }
+footer h3{ color:white; font-family:Poppins; margin-bottom:10px; }
+@media(max-width:900px){ .hero{ flex-direction:column; text-align:center; } .hero-text,.hero-image{ width:100%; } .hero-buttons{ justify-content:center; flex-wrap:wrap; } .auth-container{ grid-template-columns:1fr; width:95%; } .left-panel{ display:none; } nav ul{ display:none; } .hero-text h1{ font-size:42px; } }
+.dashboard-section{ display: none; min-height:100vh; }
+.career-ready-section{ display:none; min-height:100vh; padding:90px 8%; background:linear-gradient(to bottom,#F4F9FF,#EAF2FF); }
+.career-ready-container{ max-width:1100px; margin:auto; background:#FFFFFF; padding:50px; border-radius:30px; box-shadow:0 20px 50px rgba(37,99,235,.12); text-align:center; }
+.career-image{ width:300px; max-width:100%; margin-bottom:25px; animation:float 3s ease-in-out infinite; }
+@keyframes float{ 50%{ transform:translateY(-12px); } }
+.career-ready-container h1{ font-family:'Poppins',sans-serif; font-size:46px; color:#111827; margin-bottom:10px; }
+.career-ready-container h2{ font-family:'Poppins',sans-serif; font-size:30px; color:#2563EB; margin-bottom:18px; }
+.career-text{ max-width:700px; margin:auto; font-size:17px; color:#64748B; line-height:1.8; }
+.final-progress-card{ margin:45px auto; padding:25px; background:#F8FAFC; border-radius:18px; }
+.progress-head{ display:flex; justify-content:space-between; font-weight:600; margin-bottom:12px; color:#1E293B; }
+.progress-bar-final{ height:14px; background:#DBEAFE; border-radius:30px; overflow:hidden; }
+.progress-fill-final{ width:100%; height:100%; background:linear-gradient(90deg,#22C55E,#16A34A); }
+.summary-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; margin:40px 0; }
+.summary-card{ background:#F8FAFC; padding:22px; border-radius:18px; border:1px solid #E5E7EB; transition:.3s; }
+.summary-card:hover{ transform:translateY(-5px); box-shadow:0 12px 20px rgba(37,99,235,.08); }
+.summary-card i{ font-size:34px; color:#2563EB; margin-bottom:12px; }
+.summary-card h4{ font-family:Poppins; margin-bottom:8px; color:#111827; }
+.summary-card p{ font-weight:600; color:#2563EB; }
+.career-buttons{ display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+.outline-btn{ padding:14px 26px; border:2px solid #2563EB; background:white; color:#2563EB; font-weight:600; border-radius:14px; cursor:pointer; transition:.3s; }
+.outline-btn:hover{ background:#2563EB; color:white; }
+.home-btn{ padding:14px 28px; border:none; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; font-weight:600; border-radius:14px; cursor:pointer; transition:.3s; }
+.home-btn:hover{ transform:translateY(-3px); box-shadow:0 12px 20px rgba(37,99,235,.25); }
+@media(max-width:768px){ .career-ready-container{ padding:30px 20px; } .career-ready-container h1{ font-size:34px; } .career-ready-container h2{ font-size:24px; } .progress-head{ flex-direction:column; gap:8px; } }
+.resume-section{ display:none; min-height:100vh; padding:120px 8%; background:linear-gradient(to bottom,#F8FAFC,#EAF2FF); }
+.resume-container{ max-width:850px; margin:auto; background:white; padding:45px; border-radius:28px; box-shadow:0 20px 50px rgba(37,99,235,.12); border:1px solid #E5E7EB; }
+.resume-header{ text-align:center; margin-bottom:35px; }
+.resume-header h2{ font-family:Poppins,sans-serif; font-size:36px; margin-bottom:12px; color:#111827; }
+.resume-header p{ font-size:16px; color:#64748B; line-height:1.7; }
+.upload-box{ border:2px dashed #60A5FA; background:#EFF6FF; border-radius:24px; padding:45px 30px; text-align:center; transition:.35s; cursor:pointer; }
+.upload-box:hover{ background:#DBEAFE; transform:translateY(-5px); }
+.upload-icon{ font-size:60px; color:#2563EB; margin-bottom:20px; }
+.upload-box h3{ font-family:Poppins; margin-bottom:8px; color:#1E293B; }
+.upload-box p{ color:#64748B; margin-bottom:18px; }
+.upload-btn{ background:#2563EB; color:white; border:none; padding:15px 30px; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; transition:.3s; }
+.upload-btn:hover{ background:#1D4ED8; }
+.file-name{ margin-top:20px; font-size:14px; color:#2563EB; font-weight:600; }
+.job-selection{ margin-top:35px; }
+.job-selection label{ display:block; margin-bottom:12px; font-weight:600; font-size:16px; color:#1E293B; }
+.job-selection select{ width:100%; padding:16px; font-size:15px; border-radius:14px; border:1px solid #CBD5E1; outline:none; background:white; transition:.3s; }
+.job-selection select:focus{ border-color:#2563EB; box-shadow:0 0 0 4px rgba(37,99,235,.15); }
+.analyze-btn{ width:100%; margin-top:40px; padding:17px; border:none; border-radius:16px; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; font-size:17px; font-weight:600; cursor:pointer; transition:.35s; box-shadow:0 15px 30px rgba(37,99,235,.18); }
+.analyze-btn:hover{ transform:translateY(-4px); }
+@media(max-width:768px){ .resume-container{ padding:30px 20px; } .resume-header h2{ font-size:28px; } .upload-box{ padding:35px 20px; } .upload-icon{ font-size:48px; } }
+.dashboard-section{ display:none; padding:120px 8%; background:#F8FAFC; min-height:100vh; }
+.dashboard-header{ text-align:center; margin-bottom:45px; }
+.dashboard-header h2{ font-family:Poppins; font-size:38px; color:#111827; margin-bottom:10px; }
+.dashboard-header p{ color:#64748B; line-height:1.7; }
+.match-card{ display:flex; justify-content:space-between; align-items:center; background:white; padding:30px; border-radius:24px; box-shadow:0 15px 30px rgba(37,99,235,.08); border:1px solid #E5E7EB; margin-bottom:45px; }
+.score-circle{ width:110px; height:110px; border-radius:50%; background:conic-gradient(#2563EB 85%,#DBEAFE 0); display:flex; align-items:center; justify-content:center; }
+.score-circle span{ width:82px; height:82px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:700; color:#2563EB; }
+.dashboard-title{ font-family:Poppins; font-size:24px; margin:25px 0; }
+.skills-grid{ display:flex; flex-wrap:wrap; gap:15px; margin-bottom:40px; }
+.skill-badge{ background:#DBEAFE; color:#2563EB; padding:12px 20px; border-radius:50px; font-weight:600; }
+.insight-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:25px; margin-bottom:45px; }
+.insight-card{ padding:25px; border-radius:20px; background:white; border:1px solid #E5E7EB; box-shadow:0 10px 25px rgba(0,0,0,.05); }
+.strength{ border-left:6px solid #22C55E; }
+.weakness{ border-left:6px solid #EF4444; }
+.insight-card h3{ margin-bottom:15px; font-family:Poppins; }
+.insight-card ul{ padding-left:20px; color:#475569; line-height:2; }
+.job-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; margin-bottom:45px; }
+.job-card{ background:white; padding:22px; border-radius:18px; border:1px solid #E5E7EB; text-align:center; transition:.3s; box-shadow:0 8px 20px rgba(37,99,235,.06); }
+.job-card:hover{ transform:translateY(-5px); }
+.job-card h4{ font-family:Poppins; margin-bottom:10px; }
+.job-card p{ color:#2563EB; font-weight:700; }
+.roadmap-btn{ width:100%; padding:18px; border:none; border-radius:18px; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; font-size:17px; font-weight:600; cursor:pointer; transition:.3s; }
+.roadmap-btn:hover{ transform:translateY(-3px); }
+@media(max-width:768px){ .match-card{ flex-direction:column; gap:20px; text-align:center; } .dashboard-header h2{ font-size:30px; } }
+.roadmap-section{ display:none; min-height:100vh; padding:120px 8%; background:linear-gradient(to bottom,#EFF6FF,#FFFFFF); }
+.roadmap-header{ text-align:center; margin-bottom:45px; }
+.roadmap-header h2{ font-family:Poppins; font-size:38px; margin-bottom:10px; }
+.roadmap-header p{ color:#64748B; }
+.progress-card{ background:white; padding:25px; border-radius:20px; box-shadow:0 12px 25px rgba(37,99,235,.08); margin-bottom:45px; }
+.progress-top{ display:flex; justify-content:space-between; margin-bottom:15px; font-weight:600; }
+.progress-bar{ height:14px; background:#DCEAFE; border-radius:20px; overflow:hidden; }
+.progress-fill{ height:100%; width:20%; background:linear-gradient(90deg,#2563EB,#60A5FA); border-radius:20px; transition:.5s; }
+.timeline{ position:relative; margin-bottom:50px; }
+.timeline::before{ content:''; position:absolute; left:13px; top:0; width:4px; height:100%; background:#BFDBFE; }
+.timeline-item{ display:flex; align-items:flex-start; gap:20px; margin-bottom:35px; position:relative; }
+.timeline-item input{ width:26px; height:26px; accent-color:#2563EB; cursor:pointer; margin-top:8px; }
+.timeline-content{ background:white; padding:20px; border-radius:18px; box-shadow:0 8px 20px rgba(37,99,235,.08); width:100%; border:1px solid #E5E7EB; }
+.timeline-content h4{ font-family:Poppins; margin-bottom:8px; }
+.timeline-content p{ color:#64748B; line-height:1.6; }
+.motivation-card{ background:#DBEAFE; padding:25px; border-radius:20px; margin-bottom:35px; }
+.motivation-card h3{ color:#1D4ED8; margin-bottom:10px; font-family:Poppins; }
+.finish-btn{ width:100%; padding:18px; border:none; border-radius:18px; background:linear-gradient(135deg,#2563EB,#3B82F6); color:white; font-size:17px; font-weight:600; cursor:pointer; }
+.finish-btn:hover{ transform:translateY(-3px); }
+@media(max-width:768px){ .progress-top{ flex-direction:column; gap:10px; } .roadmap-header h2{ font-size:30px; } }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Skill<span>2Job</span></div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href ="#FAQ'S">FAQ'S</a></li>
+    </ul>
+    <button class="nav-btn" onclick="openAuth()">Login/Register</button>
+</nav>
+
+<!-- LANDING PAGE -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>DISCOVER YOUR <span>SKILLS.</span><br>BUILD YOUR CAREER</h1>
+        <p>Skill2Job is your AI-powered career companion that helps you understand where you stand and where you can go. Upload your resume, explore your skill profile, identify career opportunities, and get a personalized roadmap to move closer to your dream job.</p>
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="openAuth()">Get Started</button>
+            <button class="secondary-btn" onclick="scrollToFeatures()">Learn More</button>
+        </div>
+    </div>
+    <div class="hero-image">
+        <div class="hero-card">
+            <h3>Skill Analysis</h3>
+            <div class="skill">Python <span>67%</span></div>
+            <div class="progress"><div style="width:67%"></div></div>
+            <div class="skill">SQL <span>82%</span></div>
+            <div class="progress"><div style="width:82%"></div></div>
+            <div class="skill">HTML <span>78%</span></div>
+            <div class="progress"><div style="width:78%"></div></div>
+            <div class="skill">Communication <span>91%</span></div>
+            <div class="progress"><div style="width:91%"></div></div>
+            <div class="skill">CSS<span>87%</span></div>
+            <div class="progress"><div style="width:87%"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <h2 class="section-title">Why Choose Skill2Job?</h2>
+    <p class="section-sub">Your personalized AI career mentor in one platform.</p>
+    <div class="grid">
+        <div class="card">
+            <i class="fa-solid fa-file-arrow-up"></i>
+            <h3>Resume Analysis</h3>
+            <p>Upload your resume and let AI identify your technical and soft skills instantly.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-brain"></i>
+            <h3>AI Skill Extraction</h3>
+            <p>AI extracts skills and compares them with your dream job requirements.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>Job Suggestions</h3>
+            <p>Receive career recommendations based on your existing skills and profile.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-route"></i>
+            <h3>Personal Roadmap</h3>
+            <p>Get a structured roadmap to become job-ready step by step.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="features" id="about">
+    <h2 class="section-title">About Skill2Job</h2>
+    <p class="section-sub">Built for students and freshers who want career guidance powered by AI.</p>
+    <div class="grid">
+        <div class="card">
+            <i class="fa-solid fa-user-graduate"></i>
+            <h3>Students First</h3>
+            <p>Designed especially for college students looking for internships and jobs.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Career Growth</h3>
+            <p>Know your skill gaps and improve with a personalized learning roadmap.</p>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-robot"></i>
+            <h3>AI Powered</h3>
+            <p>Resume parsing, skill extraction, roadmap generation and career insights using AI.</p>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section features" id="FAQ'S">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about Skill2Job.</p>
+    <div class="grid">
+        <div class="card">
+            <h3>How does Skill2Job work?</h3>
+            <p>Skill2Job analyzes your uploaded resume using AI, extracts your skills, compares them with your selected career role, and generates personalized career insights along with a learning roadmap.</p>
+        </div>
+        <div class="card">
+            <h3>What file formats can I upload?</h3>
+            <p>You can upload your resume in PDF or DOCX format. The AI reads your resume and identifies both technical and soft skills.</p>
+        </div>
+        <div class="card">
+            <h3>Can I choose my preferred job role?</h3>
+            <p>Yes. Before analysis, you can select your target role such as Software Engineer, Data Analyst, AI Engineer, Web Developer, and more.</p>
+        </div>
+    </div>
+</section>
+
+<!-- LOGIN REGISTER PAGE -->
+<section class="auth-section" id="authPage">
+    <div class="auth-container">
+        <div class="left-panel">
+            <h2>Welcome to Skill2Job</h2>
+            <p>Register once and continue your career journey anytime. Your profile and progress remain saved for future logins.</p>
+        </div>
+        <div class="right-panel">
+            <!-- LOGIN FORM -->
+            <div id="loginForm">
+                <h2 class="form-title">Login</h2>
+                <div class="input-box">
+                    <label>Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username">
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password">
+                </div>
+                <button class="auth-btn" onclick="handleLogin()">Login</button>
+                <div class="switch">New user? <span onclick="showRegister()">Create Account</span></div>
+            </div>
+            <!-- REGISTER FORM -->
+            <div id="registerForm" style="display:none;">
+                <h2 class="form-title">Register</h2>
+                <div class="input-box">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose username">
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="Create password">
+                </div>
+                <div class="input-box">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirm" placeholder="Confirm password">
+                </div>
+                <button class="auth-btn" onclick="handleRegister()">Register</button>
+                <div class="switch">Already have an account? <span onclick="showLogin()">Login</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESUME UPLOAD PAGE -->
+<section class="resume-section" id="resumePage">
+    <div class="resume-container">
+        <div class="resume-header">
+            <h2>Upload Your Resume</h2>
+            <p>Upload your latest resume and select your preferred career role. Skill2Job AI will analyze your resume and prepare personalized career insights.</p>
+        </div>
+        <div class="upload-box" onclick="document.getElementById('resumeFile').click()">
+            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+            <h3>Drag & Drop Resume Here</h3>
+            <p>or click below to browse your device.</p>
+            <input type="file" id="resumeFile" accept=".pdf,.doc,.docx" hidden>
+            <button class="upload-btn">Choose Resume</button>
+            <p id="fileName" class="file-name">No file selected</p>
+        </div>
+        <div class="job-selection">
+            <label>Select Your Dream Job</label>
+            <select id="jobRole">
+                <option disabled selected>Select Career Role</option>
+                <option>Software Engineer</option>
+                <option>Frontend Developer</option>
+                <option>Backend Developer</option>
+                <option>Full Stack Developer</option>
+                <option>Data Analyst</option>
+                <option>AI / ML Engineer</option>
+                <option>Cybersecurity Analyst</option>
+                <option>Cloud Engineer</option>
+                <option>UI / UX Designer</option>
+            </select>
+        </div>
+        <button class="analyze-btn" onclick="goDashboard()">Analyze Resume</button>
+    </div>
+</section>
+
+<!-- AI DASHBOARD PAGE -->
+<section class="dashboard-section" id="dashboardPage">
+    <div class="dashboard-header">
+        <h2>AI Career Insights</h2>
+        <p>Your resume has been analyzed successfully. Explore your skills, strengths, weaknesses, career matches, and AI-generated roadmap.</p>
+    </div>
+    <div class="match-card">
+        <div>
+            <h3>AI Job Match Score</h3>
+            <p>Based on your uploaded resume and selected job role.</p>
+        </div>
+        <div class="score-circle">
+            <span id="scoreText">85%</span>
+        </div>
+    </div>
+    
+    <h3 class="dashboard-title">Skills Extracted</h3>
+    <div class="skills-grid" id="skillsGrid">
+        <!-- Injected via JS -->
+    </div>
+    
+    <div class="insight-grid">
+        <div class="insight-card strength">
+            <h3>💪 Strengths</h3>
+            <ul id="strengthsList">
+                 <!-- Injected via JS -->
+            </ul>
+        </div>
+        <div class="insight-card weakness">
+            <h3>⚠ Weaknesses</h3>
+            <ul id="weaknessesList">
+                 <!-- Injected via JS -->
+            </ul>
+        </div>
+    </div>
+    
+    <h3 class="dashboard-title">Suggested Jobs</h3>
+    <div class="job-grid" id="jobGrid">
+        <!-- To be expanded later -->
+        <div class="job-card">
+            <h4>Based on your profile</h4>
+            <p>Matches found</p>
+        </div>
+    </div>
+    
+    <button class="roadmap-btn" onclick="goRoadmap()">View Personalized Roadmap</button>
+</section>
+
+<!-- ROADMAP PAGE -->
+<section class="roadmap-section" id="roadmapPage">
+    <div class="roadmap-header">
+        <h2>Your Personalized Career Roadmap</h2>
+        <p>Follow this AI-generated roadmap to become job-ready for your selected role.</p>
+    </div>
+    <div class="progress-card">
+        <div class="progress-top">
+            <h3>Roadmap Progress</h3>
+            <span id="progressText">0% Completed</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <div class="timeline-content">
+                <h4>Step 1 — Foundation Basics</h4>
+                <p>Strengthen core basics relevant to your target role.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <div class="timeline-content">
+                <h4>Step 2 — Build Mini Projects</h4>
+                <p>Create portfolio-worthy projects to showcase your skills.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <div class="timeline-content">
+                <h4>Step 3 — Version Control & Collaboration</h4>
+                <p>Learn Git, GitHub, and team collaboration workflows.</p>
+            </div>
+        </div>
+    </div>
+    <div class="motivation-card">
+        <h3>AI Career Tip 💡</h3>
+        <p>Focus on completing one milestone at a time. Small consistent progress is more valuable than trying to learn everything at once.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <h3>Skill2Job</h3>
+    <p>AI-Powered Resume Analyzer & Career Roadmap Platform.</p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+/* UI NAVIGATION */
+function openAuth(){
+    document.getElementById("home").style.display = "none";
+    document.getElementById("features").style.display = "none";
+    document.getElementById("about").style.display = "none";
+    document.getElementById("FAQ'S").style.display = "none";
+    document.getElementById("footer").style.display = "none";
+    document.getElementById("authPage").style.display = "flex";
+    window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function showRegister(){
+    document.getElementById("loginForm").style.display="none";
+    document.getElementById("registerForm").style.display="block";
+}
+
+function showLogin(){
+    document.getElementById("registerForm").style.display="none";
+    document.getElementById("loginForm").style.display="block";
+}
+
+function scrollToFeatures(){
+    document.getElementById("features").scrollIntoView({behavior: "smooth"});
+}
+
+function goResume(){
+    document.getElementById("authPage").style.display = "none";
+    document.getElementById("resumePage").style.display = "block";
+    window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function goRoadmap(){
+    document.getElementById("dashboardPage").style.display="none";
+    document.getElementById("roadmapPage").style.display="block";
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function updateProgress(){
+    const checks = document.querySelectorAll(".timeline-item input");
+    const checked = document.querySelectorAll(".timeline-item input:checked");
+    const percent = Math.round((checked.length/checks.length)*100);
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressText").innerHTML = percent + "% Completed";
+}
+
+/* FILE UPLOAD DISPLAY */
+const resumeInput = document.getElementById("resumeFile");
+resumeInput.addEventListener("change", function(){
+    if(this.files.length > 0){
+        document.getElementById("fileName").innerHTML = "Selected File: " + this.files[0].name;
+    }
+});
+
+/* API INTEGRATION */
+async function handleRegister() {
+    const username = document.getElementById("regUsername").value;
+    const password = document.getElementById("regPassword").value;
+    const confirm = document.getElementById("regConfirm").value;
+
+    if (!username || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            alert("Registration successful! Proceeding to upload.");
+            goResume();
+        } else {
+            alert(data.error);
+        }
+    } catch (error) {
+        alert("Server error. Ensure backend is running.");
+    }
+}
+
+async function handleLogin() {
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+
+    if (!username || !password) {
+        alert("Please enter both username and password.");
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (response.ok) {
+            goResume();
+        } else {
+            alert(data.error);
+        }
+    } catch (error) {
+        alert("Server error. Ensure backend is running.");
+    }
+}
+
+async function goDashboard() {
+    const jobRole = document.getElementById("jobRole").value;
+    const fileInput = document.getElementById("resumeFile");
+
+    if(jobRole === "Select Career Role" || fileInput.files.length === 0){
+        alert("Please upload a resume and select a role.");
+        return;
+    }
+
+    alert("Uploading... AI is analyzing your resume (this may take a few moments).");
+
+    const formData = new FormData();
+    formData.append("resume", fileInput.files[0]);
+    formData.append("role", jobRole);
+
+    try {
+        const response = await fetch("/api/resume/analyze", {
+            method: "POST",
+            body: formData
+        });
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Populate Dashboard Data
+            document.getElementById("scoreText").innerText = data.match_score + "%";
+            document.querySelector(".score-circle").style.background = `conic-gradient(#2563EB ${data.match_score}%, #DBEAFE 0)`;
+            
+            const skillsDiv = document.getElementById("skillsGrid");
+            skillsDiv.innerHTML = data.extracted_skills.map(skill => `<span class="skill-badge">${skill}</span>`).join('');
+            
+            document.getElementById("strengthsList").innerHTML = data.strengths.map(s => `<li>${s}</li>`).join('');
+            document.getElementById("weaknessesList").innerHTML = data.weaknesses.map(w => `<li>${w}</li>`).join('');
+
+            // Show Dashboard
+            document.getElementById("resumePage").style.display = "none";
+            document.getElementById("dashboardPage").style.display = "block";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+            alert("Error: " + data.error);
+        }
+    } catch (error) {
+        console.error(error);
+        alert("Failed to analyze resume. Ensure backend is running.");
+    }
+}
+</script>
+</body>
+</html>
