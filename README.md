@@ -1,73 +1,180 @@
-Skill2Job — AI Career Assistant & Resume Analyzer
-Skill2Job is an AI-powered web platform designed to bridge the gap between academic resumes and industry expectations. It parses uploaded resumes, extracts technical and soft skills, evaluates alignment against target career roles, and generates personalized development insights.
+🚀 Skill2Job – AI Powered Career Assistant
+Transform Your Skills Into Your Career.
 
-1. Overview & Key Features
-Resume Ingestion: Supports extraction from both .pdf and .docx document formats.
+Skill2Job is an AI-powered career assistant that analyzes a user's resume, identifies strengths and skill gaps, recommends suitable career paths, and generates a personalized learning roadmap to help users become job-ready.
 
-AI-Driven Skill Extraction: Identifies technical proficiencies and interpersonal capabilities.
+Built for a hackathon project using HTML, CSS, JavaScript, Flask, Python, MySQL, and Gemini AI.
 
-Gap Analysis & Scoring: Computes an objective match percentage with explicit strengths and weaknesses.
-
-Structured Roadmap: Generates step-by-step milestones to help candidates achieve job readiness.
-
-2. Tech Stack & Directory Structure
-Frontend: Vanilla HTML5, CSS3, Modern JavaScript (Fetch API).
-
-Backend: Python, Flask, Flask-CORS, Flask-SQLAlchemy, SQLite.
-
-Document Processing: PyPDF2, python-docx.
-
-Intelligence Layer: Google GenAI SDK (google-genai).
-
-Plaintext
-Skill2Job/
-├── frontend/
-│   └── index.html
-└── backend/
-    ├── .env
-    ├── .gitignore
-    ├── app.py
-    ├── models.py
-    ├── requirements.txt
-    ├── routes/
-    │   ├── auth.py
-    │   └── resume.py
-    ├── services/
-    │   ├── ai_service.py
-    │   ├── parser_service.py
-    │   └── skill_extractor.py
-    └── uploads/
-3. Installation & Configuration
-Clone and prepare environment:
-
-Bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+🌟 Features
+📄 Resume Analysis – Upload a PDF or DOCX resume and extract skills using AI.
+🧠 AI Skill Evaluation – Identify strengths and weaknesses from the resume.
+💼 Career Recommendations – Suggest the most suitable job roles with match percentages.
+🛣️ Personalized Roadmap – Generate a step-by-step roadmap for the selected career path.
+📊 Progress Tracker – Track completed roadmap steps and learning progress.
+🎯 Career Ready Dashboard – View overall resume score, skills, and next learning tasks.
+🛠️ Tech Stack
+Frontend	Backend	Database	AI
+HTML5	Flask	MySQL	Gemini AI
+CSS3	Python	SQLAlchemy	Google Generative AI
+JavaScript	Flask-CORS	MySQL Connector	
+📁 Project Structure
+SKILL2JOB/
+│
+├── FRONTEND/
+│   ├── INDEX.html
+│   ├── career-ready.png
+│   ├── logo.png
+│
+├── BACKEND/
+│   ├── app.py
+│   ├── requirements.txt
+│   ├── .env
+│   ├── uploads/
+│   │
+│   ├── services/
+│   │   ├── ai_service.py
+│   │   └── parser_service.py
+│   │
+│   └── database/
+│       ├── database.py
+│       ├── auth_db.py
+│       ├── progress_db.py
+│       ├── database_setup.py
+│       └── skill2job_database.sql
+│
+└── README.md
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone <repository-url>
+cd SKILL2JOB
+2️⃣ Create Virtual Environment
+cd BACKEND
+python3 -m venv venv
+source venv/bin/activate
+3️⃣ Install Dependencies
 pip install -r requirements.txt
-Environment configuration (backend/.env):
-Create a .env file in the backend/ directory:
+4️⃣ Configure Environment Variables
+Create a .env file inside the BACKEND folder.
 
-Code snippet
-GEMINI_API_KEY=your_gemini_api_key_here
-FLASK_APP=app.py
-FLASK_ENV=development
-4. API Endpoints & Execution
-Start the server:
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+PORT=5001
+5️⃣ Setup MySQL Database
+Open database_setup.py and add your MySQL password.
 
-Bash
-python app.py
-The Flask server initializes SQLite (skill2job.db) and serves API routes on [http://127.0.0.1:5000](http://127.0.0.1:5000).
+password="YOUR_PASSWORD"
+Run:
 
-Primary Endpoints:
+cd database
+python3 database_setup.py
+6️⃣ Start Backend Server
+cd ..
+python3 app.py
+Backend runs at:
 
-POST /api/auth/register — Creates user credentials with hashed passwords.
+http://127.0.0.1:5001
+7️⃣ Run Frontend
+Open FRONTEND/INDEX.html using Live Server in VS Code.
 
-POST /api/auth/login — Authenticates returning users.
+Frontend runs at:
 
-POST /api/resume/analyze — Accepts multipart/form-data (resume file and role string) to return structured JSON analysis.
+http://127.0.0.1:5500/INDEX.html
+🔄 Application Workflow
+User registers or logs in.
 
-Client Access:
-Open frontend/index.html in any browser or serve it directly via Flask at [http://127.0.0.1:5000/](http://127.0.0.1:5000/).
+User uploads a resume (PDF/DOCX).
 
-Would you like to add a Docker configuration file or deployment instructions for platforms like Render or AWS?
+Resume text is extracted using Python.
+
+Gemini AI analyzes the resume.
+
+Dashboard displays:
+
+Skills
+Strengths
+Weaknesses
+Suggested Job Roles
+Resume Score
+User selects a career path.
+
+Skill2Job generates a personalized roadmap.
+
+User tracks progress until becoming Career Ready.
+
+📊 Database Modules
+Users – Authentication and login details.
+Resumes – Uploaded resumes and extracted text.
+Analysis Reports – AI-generated strengths, weaknesses, and recommendations.
+Jobs – Career role master table.
+Required Skills – Skills required for each role.
+Roadmaps – Learning roadmap for each career path.
+Progress Tracker – User learning progress.
+🎯 Future Improvements
+Resume ATS Score.
+Interview Question Generator.
+Course Recommendations.
+Job & Internship Recommendation Portal.
+PDF Report Download.
+User Profile Dashboard.
+👩‍💻 Team
+Skill2Job – Hackathon Project
+
+Developed by the Skill2Job Team using AI-powered career guidance to help students become job-ready.
+
+📌 License
+This project is developed for educational and hackathon purposes.
+
+About
+
+No description, website, or topics provided.
+Resources
+Readme
+Activity
+Stars
+0 stars
+Watchers
+0 watching
+Forks
+0 forks
+Releases
+No releases published
+Create a new release
+Packages
+No packages published
+Publish your first package
+Contributors
+1
+ (1)
+@ShreshthaAgnihotri
+ShreshthaAgnihotriShreshtha Agnihotri
+Languages
+HTML
+92%
+Python
+8%
+Suggested workflows
+Based on your tech stack
+
+Jekyll using Docker image logo
+Jekyll using Docker image
+Package a Jekyll site using the jekyll/builder Docker image.
+By GitHub Actions
+SLSA Generic generator logo
+SLSA Generic generator
+Generate SLSA3 provenance for your existing release workflows
+By Open Source Security Foundation (OpenSSF)
+Publish Python Package logo
+Publish Python Package
+Publish a Python Package to PyPI on release.
+By GitHub Actions
+More workflows
+Footer
+© 2026 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Community
+Docs
+Contact
+Manage cookies
