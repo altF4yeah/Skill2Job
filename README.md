@@ -1,4 +1,5 @@
 🚀 Skill2Job – AI Powered Career Assistant
+
 Transform Your Skills Into Your Career.
 
 Skill2Job is an AI-powered career assistant that analyzes a user's resume, identifies strengths and skill gaps, recommends suitable career paths, and generates a personalized learning roadmap to help users become job-ready.
@@ -6,18 +7,23 @@ Skill2Job is an AI-powered career assistant that analyzes a user's resume, ident
 Built for a hackathon project using HTML, CSS, JavaScript, Flask, Python, MySQL, and Gemini AI.
 
 🌟 Features
+
 📄 Resume Analysis – Upload a PDF or DOCX resume and extract skills using AI.
 🧠 AI Skill Evaluation – Identify strengths and weaknesses from the resume.
 💼 Career Recommendations – Suggest the most suitable job roles with match percentages.
 🛣️ Personalized Roadmap – Generate a step-by-step roadmap for the selected career path.
 📊 Progress Tracker – Track completed roadmap steps and learning progress.
 🎯 Career Ready Dashboard – View overall resume score, skills, and next learning tasks.
+
 🛠️ Tech Stack
+
 Frontend	Backend	Database	AI
 HTML5	Flask	MySQL	Gemini AI
 CSS3	Python	SQLAlchemy	Google Generative AI
 JavaScript	Flask-CORS	MySQL Connector	
+
 📁 Project Structure
+
 SKILL2JOB/
 │
 ├── FRONTEND/
@@ -43,7 +49,9 @@ SKILL2JOB/
 │       └── skill2job_database.sql
 │
 └── README.md
+
 ⚙️ Installation & Setup
+
 1️⃣ Clone the Repository
 git clone <repository-url>
 cd SKILL2JOB
@@ -124,57 +132,3 @@ Developed by the Skill2Job Team using AI-powered career guidance to help student
 This project is developed for educational and hackathon purposes.
 
 About
-
-No description, website, or topics provided.
-Resources
-Readme
-Activity
-Stars
-0 stars
-Watchers
-0 watching
-Forks
-0 forks
-Releases
-No releases published
-Create a new release
-Packages
-No packages published
-Publish your first package
-Contributors
-1
- (1)
-@ShreshthaAgnihotri
-ShreshthaAgnihotriShreshtha Agnihotri
-Languages
-HTML
-92%
-Python
-8%
-Suggested workflows
-Based on your tech stack
-
-Jekyll using Docker image logo
-Jekyll using Docker image
-Package a Jekyll site using the jekyll/builder Docker image.
-By GitHub Actions
-SLSA Generic generator logo
-SLSA Generic generator
-Generate SLSA3 provenance for your existing release workflows
-By Open Source Security Foundation (OpenSSF)
-Publish Python Package logo
-Publish Python Package
-Publish a Python Package to PyPI on release.
-By GitHub Actions
-More workflows
-Footer
-© 2026 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Community
-Docs
-Contact
-Manage cookies
