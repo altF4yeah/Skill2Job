@@ -1,4 +1,4 @@
-🚀 Skill2Job – AI Powered Career Assistant
+***🚀 Skill2Job – AI Powered Career Assistant***
 
 Transform Your Skills Into Your Career.
 
@@ -6,7 +6,7 @@ Skill2Job is an AI-powered career assistant that analyzes a user's resume, ident
 
 Built for a hackathon project using HTML, CSS, JavaScript, Flask, Python, MySQL, and Gemini AI.
 
-🌟 Features
+**🌟 Features**
 
 📄 Resume Analysis – Upload a PDF or DOCX resume and extract skills using AI.
 🧠 AI Skill Evaluation – Identify strengths and weaknesses from the resume.
@@ -15,15 +15,15 @@ Built for a hackathon project using HTML, CSS, JavaScript, Flask, Python, MySQL,
 📊 Progress Tracker – Track completed roadmap steps and learning progress.
 🎯 Career Ready Dashboard – View overall resume score, skills, and next learning tasks.
 
-🛠️ Tech Stack
+**🛠️ Tech Stack**
 
 Frontend	Backend	Database	AI
 HTML5	Flask	MySQL	Gemini AI
 CSS3	Python	SQLAlchemy	Google Generative AI
 JavaScript	Flask-CORS	MySQL Connector	
 
-📁 Project Structure
-
+**📁 Project Structure**
+```
 SKILL2JOB/
 │
 ├── FRONTEND/
@@ -49,8 +49,8 @@ SKILL2JOB/
 │       └── skill2job_database.sql
 │
 └── README.md
-
-⚙️ Installation & Setup
+```
+**⚙️ Installation & Setup**
 
 1️⃣ Clone the Repository
 git clone <repository-url>
@@ -95,7 +95,7 @@ Resume text is extracted using Python.
 
 Gemini AI analyzes the resume.
 
-Dashboard displays:
+**Dashboard displays:**
 
 Skills
 Strengths
@@ -108,7 +108,8 @@ Skill2Job generates a personalized roadmap.
 
 User tracks progress until becoming Career Ready.
 
-📊 Database Modules
+**📊 Database Modules**
+
 Users – Authentication and login details.
 Resumes – Uploaded resumes and extracted text.
 Analysis Reports – AI-generated strengths, weaknesses, and recommendations.
@@ -116,19 +117,20 @@ Jobs – Career role master table.
 Required Skills – Skills required for each role.
 Roadmaps – Learning roadmap for each career path.
 Progress Tracker – User learning progress.
-🎯 Future Improvements
+
+**🎯 Future Improvements**
+
 Resume ATS Score.
 Interview Question Generator.
 Course Recommendations.
 Job & Internship Recommendation Portal.
 PDF Report Download.
 User Profile Dashboard.
-👩‍💻 Team
+
+**👩‍💻 Team**
 Skill2Job – Hackathon Project
 
 Developed by the Skill2Job Team using AI-powered career guidance to help students become job-ready.
 
-📌 License
+**📌 License**
 This project is developed for educational and hackathon purposes.
-
-About
