@@ -24,31 +24,35 @@ JavaScript	Flask-CORS	MySQL Connector
 
 **📁 Project Structure**
 ```
-SKILL2JOB/
+skill2jobb/
 │
-├── FRONTEND/
-│   ├── INDEX.html
-│   ├── career-ready.png
-│   ├── logo.png
-│
-├── BACKEND/
-│   ├── app.py
-│   ├── requirements.txt
-│   ├── .env
-│   ├── uploads/
+├── backend/
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   └── resume.py
 │   │
 │   ├── services/
-│   │   ├── ai_service.py
-│   │   └── parser_service.py
+│   │   ├── __init__.py
+│   │   ├── ai_parser.py
+│   │   ├── resume_parser.py
+│   │   └── skill_extractor.py
 │   │
-│   └── database/
-│       ├── database.py
-│       ├── auth_db.py
-│       ├── progress_db.py
-│       ├── database_setup.py
-│       └── skill2job_database.sql
+│   ├── uploads/
+│   ├── venv/
+│   ├── .env
+│   ├── .gitignore
+│   ├── app.py
+│   ├── models.py
+│   └── requirements.txt
 │
-└── README.md
+├── frontend/
+│   └── index.html
+│
+├── instance/
+│   └── skill2job.db
+│
+└── uploads/
 ```
 **⚙️ Installation & Setup**
 
